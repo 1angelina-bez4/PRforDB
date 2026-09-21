@@ -1,0 +1,25 @@
+D:\study\БД\Практические работы\PR32\PR32\bin\Debug\PR32.exe.config
+D:\study\БД\Практические работы\PR32\PR32\bin\Debug\PR32.exe
+D:\study\БД\Практические работы\PR32\PR32\bin\Debug\PR32.pdb
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.csproj.AssemblyReference.cache
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.Form1.resources
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.Properties.Resources.resources
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.csproj.GenerateResource.cache
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.csproj.CoreCompileInputs.cache
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.exe
+D:\study\БД\Практические работы\PR32\PR32\obj\Debug\PR32.pdb
+D:\Bez\PR32\PR32\bin\Debug\PR32.exe.config
+D:\Bez\PR32\PR32\bin\Debug\PR32.exe
+D:\Bez\PR32\PR32\bin\Debug\PR32.pdb
+D:\Bez\PR32\PR32\bin\Debug\MySql.Data.dll
+D:\Bez\PR32\PR32\bin\Debug\MySql.Data.xml
+D:\Bez\PR32\PR32\obj\Debug\PR32.csproj.AssemblyReference.cache
+D:\Bez\PR32\PR32\obj\Debug\PR32.Auth.resources
+D:\Bez\PR32\PR32\obj\Debug\PR32.Properties.Resources.resources
+D:\Bez\PR32\PR32\obj\Debug\PR32.Settings.resources
+D:\Bez\PR32\PR32\obj\Debug\PR32.userForm.resources
+D:\Bez\PR32\PR32\obj\Debug\PR32.csproj.GenerateResource.cache
+D:\Bez\PR32\PR32\obj\Debug\PR32.csproj.CoreCompileInputs.cache
+D:\Bez\PR32\PR32\obj\Debug\PR32.csproj.CopyComplete
+D:\Bez\PR32\PR32\obj\Debug\PR32.exe
+D:\Bez\PR32\PR32\obj\Debug\PR32.pdb

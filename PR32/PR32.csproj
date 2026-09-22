@@ -51,17 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auth.cs">
+    <Compile Include="Form\Auth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auth.Designer.cs">
+    <Compile Include="Form\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassConnect.cs" />
-    <Compile Include="Import.cs">
+    <Compile Include="Form\Import.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Import.Designer.cs">
+    <Compile Include="Form\Import.Designer.cs">
       <DependentUpon>Import.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -71,22 +71,22 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs">
+    <Compile Include="Form\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.Designer.cs">
+    <Compile Include="Form\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="userForm.cs">
+    <Compile Include="Form\userForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="userForm.Designer.cs">
+    <Compile Include="Form\userForm.Designer.cs">
       <DependentUpon>userForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Auth.resx">
+    <EmbeddedResource Include="Form\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Import.resx">
+    <EmbeddedResource Include="Form\Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,10 +98,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Settings.resx">
+    <EmbeddedResource Include="Form\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="userForm.resx">
+    <EmbeddedResource Include="Form\userForm.resx">
       <DependentUpon>userForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

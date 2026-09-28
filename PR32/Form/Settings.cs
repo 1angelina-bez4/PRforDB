@@ -37,7 +37,7 @@ namespace PR32
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connect = $"host={localhost_t.Text}; uid={user_t.Text};pwd={passwd_t.Text};database=db_avto;";
+            string connect = $"host={localhost_t.Text}; uid={user_t.Text};pwd={passwd_t.Text};database=trade;";
 
             MySqlConnection con = new MySqlConnection(connect);
 
@@ -46,13 +46,13 @@ namespace PR32
                 con.Open();
 
                 MessageBox.Show($"Успешное подключение к БД", "Ок", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Properties.Settings.Default["host"] = localhost_t.Text;
-                Properties.Settings.Default["uid"] = user_t.Text;
-                Properties.Settings.Default["pwd"] = passwd_t.Text;
+                Properties.Settings.Default.host = localhost_t.Text;
+                Properties.Settings.Default.uid = user_t.Text;
+                Properties.Settings.Default.pwd = passwd_t.Text;
                 Properties.Settings.Default.Save();
-                this.Hide();
-                this.Close();
 
+                this.DialogResult = DialogResult.OK;
+                this.Close();
                 con.Close();
 
             } catch (Exception ex)

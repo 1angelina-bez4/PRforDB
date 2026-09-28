@@ -24,14 +24,16 @@ namespace PR32
         {
             cmbTable.Items.Clear();
 
-            cmbTable.Items.Add("categories");
-            cmbTable.Items.Add("product");
+            cmbTable.Items.Add("category");
+            cmbTable.Items.Add("supplier");
+            cmbTable.Items.Add("unit");
             cmbTable.Items.Add("role");
-            cmbTable.Items.Add("sale");
-            cmbTable.Items.Add("saleitem");
-            cmbTable.Items.Add("storehouse");
-            cmbTable.Items.Add("suppliers");
+            cmbTable.Items.Add("product");
             cmbTable.Items.Add("user");
+            cmbTable.Items.Add("pickuppoint");
+            cmbTable.Items.Add("orderstatus");
+            cmbTable.Items.Add("order");
+            cmbTable.Items.Add("orderproduct");
 
             txtFilePath.ReadOnly = true;
             txtFilePath.Text = "";
@@ -73,12 +75,16 @@ namespace PR32
 
         private void ImportCsvToTable(string tableName, string filePath)
         {
-            ClassConnect connection = new ClassConnect();
+            string host = Properties.Settings.Default.host;
+            string uid = Properties.Settings.Default.uid;
+            string pwd = Properties.Settings.Default.pwd;
+
+            string connect = $"host={host};uid={uid};pwd={pwd};database=trade;";
 
             try
             {
-                //Читаем CSV
-                string[] lines = File.ReadAllLines(filePath);
+                
+                string[] lines = File.ReadAllLines(filePath, Encoding.GetEncoding(1251));
 
                 if (lines.Length < 2)
                 {
@@ -86,30 +92,39 @@ namespace PR32
                     return;
                 }
 
-                // Первая строка — заголовки (названия колонок)
-                string[] headers = lines[0].Split(';');   // или ',' — зависит от CSV
+                //Убираем кавычки и пробелы из заголовков
+                string[] headers = lines[0]
+                    .Split(';')
+                    .Select(h => h.Trim().Trim('"').Trim())
+                    .ToArray();
 
-                using (MySqlConnection con = new MySqlConnection(connection.connect))
+                using (MySqlConnection con = new MySqlConnection(connect))
                 {
                     con.Open();
 
                     int successCount = 0;
                     int errorCount = 0;
+                    string lastError = "";
+                    int lastErrorRow = -1;
 
-                    //Начинаем со 2-й строки (первая — заголовки)
                     for (int i = 1; i < lines.Length; i++)
                     {
-                        string[] values = lines[i].Split(';');
+                        // Убираем кавычки и пробелы из значений
+                        string[] values = lines[i]
+                            .Split(';')
+                            .Select(v => v.Trim().Trim('"').Trim())
+                            .ToArray();
 
                         if (values.Length != headers.Length)
                         {
                             errorCount++;
-                            continue;   // пропускаем битую строку
+                            lastError = $"Несовпадение колонок: {values.Length} vs {headers.Length}";
+                            lastErrorRow = i;
+                            continue;
                         }
 
-                        
-                        string columns = string.Join(", ", headers);
-                        string parameters = string.Join(", ", headers.Select(h => "@" + h.Trim()));
+                        string columns = string.Join(", ", headers.Select(h => $"`{h}`"));
+                        string parameters = string.Join(", ", headers.Select(h => "@" + h));
 
                         string query = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters})";
 
@@ -117,7 +132,7 @@ namespace PR32
                         {
                             for (int j = 0; j < headers.Length; j++)
                             {
-                                cmd.Parameters.AddWithValue("@" + headers[j].Trim(), values[j].Trim());
+                                cmd.Parameters.AddWithValue("@" + headers[j], values[j]);
                             }
 
                             try
@@ -125,18 +140,30 @@ namespace PR32
                                 cmd.ExecuteNonQuery();
                                 successCount++;
                             }
-                            catch
+                            catch (Exception ex)
                             {
                                 errorCount++;
+                                lastError = ex.Message;
+                                lastErrorRow = i;
                             }
                         }
                     }
 
-                    MessageBox.Show(
-                        $"Импорт завершён!",
-                        "Результат",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    string message = $"Импорт завершён!\n\n" +
+                                     $"Успешно: {successCount}\n" +
+                                     $"Ошибок: {errorCount}";
+
+                    if (!string.IsNullOrEmpty(lastError))
+                    {
+                        message += $"\n\nПоследняя ошибка (строка {lastErrorRow}):\n{lastError}";
+                    }
+
+                    MessageBox.Show(message, "Результат",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+                    new userForm().ShowDialog();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -159,5 +186,13 @@ namespace PR32
                 }
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new userForm().ShowDialog();
+            this.Close();
+        }
+    
     }
 }

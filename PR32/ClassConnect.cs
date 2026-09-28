@@ -8,6 +8,6 @@ namespace PR32
 {
     public class ClassConnect
     {
-        public string connect = "host=localhost;uid=root;pwd=root;dqatabase=trade;";
+        public string connect = "host=localhost;uid=root;pwd=root;database=trade;";
     }
 }

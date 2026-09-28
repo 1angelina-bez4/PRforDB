@@ -39,3 +39,17 @@ D:\Bez\PRforDB\PR32\obj\Debug\PR32.csproj.CoreCompileInputs.cache
 D:\Bez\PRforDB\PR32\obj\Debug\PR32.csproj.CopyComplete
 D:\Bez\PRforDB\PR32\obj\Debug\PR32.exe
 D:\Bez\PRforDB\PR32\obj\Debug\PR32.pdb
+D:\study\БД\Практические работы\PR3211\PR32\PR32\bin\Debug\PR32.exe.config
+D:\study\БД\Практические работы\PR3211\PR32\PR32\bin\Debug\PR32.exe
+D:\study\БД\Практические работы\PR3211\PR32\PR32\bin\Debug\PR32.pdb
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.csproj.AssemblyReference.cache
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.exe.config
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.Auth.resources
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.Import.resources
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.Properties.Resources.resources
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.Settings.resources
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.userForm.resources
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.csproj.GenerateResource.cache
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.csproj.CoreCompileInputs.cache
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.exe
+D:\study\БД\Практические работы\PR3211\PR32\PR32\obj\Debug\PR32.pdb

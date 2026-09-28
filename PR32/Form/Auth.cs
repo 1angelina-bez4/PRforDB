@@ -25,6 +25,9 @@ namespace PR32
 
         private void Auth_Load(object sender, EventArgs e)
         {
+            pictureBox3.Visible = false;
+            txtcaptcha.Visible = false;
+
             //добавленный класс для работы  с получением настроек.
             Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
@@ -33,13 +36,20 @@ namespace PR32
             string uid = Properties.Settings.Default.uid;
             string pwd = Properties.Settings.Default.pwd;
 
-            string connect_Set = $"host={host};uid={uid};pwd={pwd};database=db_avto;";
+            string connect_Set = $"host={host};uid={uid};pwd={pwd};database=trade;";
 
             if (count > 1)
             {
-                this.CreateImage(pictureBox1.Width, pictureBox1.Height);
+                this.CreateImage(pictureBox3.Width, pictureBox3.Height);
             }
             
+        }
+        private void ShowCaptcha()
+        {
+            pictureBox3.Image = CreateImage(pictureBox3.Width, pictureBox3.Height);
+            pictureBox3.Visible = true;
+            txtcaptcha.Visible = true;
+            txtcaptcha.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,42 +59,57 @@ namespace PR32
 
             if (string.IsNullOrEmpty(login) || login == "Логин" || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Введите пароль и логин", "ОШИБКА",
+                MessageBox.Show("Введите логин и пароль", "ОШИБКА",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 count++;
+                CheckAttempts();
                 return;
             }
 
-
-            if (tcaptcha != txtcaptcha.Text)
+            if (pictureBox3.Visible)
             {
-                MessageBox.Show("Попробуйте еще раз", "ОШИБКА",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string captchaInput = txtcaptcha.Text.Trim();
 
-                return;
+                if (tcaptcha != captchaInput)
+                {
+                    MessageBox.Show("Неверная капча. Попробуйте ещё раз.", "ОШИБКА",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    count++;
+                    CheckAttempts();
+                    txtcaptcha.Clear();
+                    ShowCaptcha();   // обновляем капчу
+                    return;
+                }
             }
+
             string host = Properties.Settings.Default.host;
             string uid = Properties.Settings.Default.uid;
             string pwd = Properties.Settings.Default.pwd;
 
-            string connect = $"host={host};uid={uid};pwd={pwd};database=db_avto;";
+            string connect = $"server={host};uid={uid};pwd={pwd};database=trade;";
+
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connect))
                 {
                     connection.Open();
-
-
-                    string query = $@"SELECT UserID, UserRole 
-                                     FROM user 
-                                     WHERE UserLogin = '{login}' AND UserPassword = '{password}';";
+                    string query = @"SELECT UserID, UserRole 
+                             FROM user 
+                             WHERE UserLogin = @login AND UserPassword = @password;";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
+                        cmd.Parameters.AddWithValue("@login", login);
+                        cmd.Parameters.AddWithValue("@password", password);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
+                                count = 0;
+
                                 int userId = reader.GetInt32("UserID");
                                 int roleId = reader.GetInt32("UserRole");
 
@@ -94,14 +119,22 @@ namespace PR32
                                 this.Hide();
                                 Import import = new Import();
                                 import.ShowDialog();
+                                this.Close(); // закрываем Auth
                             }
                             else
                             {
                                 MessageBox.Show("Неверный логин или пароль", "Ошибка входа",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 count++;
+                                CheckAttempts();
+
                                 passwd_t.Clear();
                                 passwd_t.Focus();
+
+                                if (count >= 2)
+                                {
+                                    ShowCaptcha();
+                                }
                             }
                         }
                     }
@@ -112,12 +145,30 @@ namespace PR32
                 MessageBox.Show($"Ошибка подключения:\n{ex.Message}",
                     "ОШИБКА", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // Открыть форму настроек
                 this.Hide();
-                new Settings().ShowDialog();
-                this.Close();
+
+                Settings settings = new Settings();
+                if (settings.ShowDialog() == DialogResult.OK)
+                {
+                    this.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
         }
+
+        private void CheckAttempts()
+        {
+            if (count >= 3)
+            {
+                MessageBox.Show("Превышено количество попыток. Программа будет закрыта.",
+                    "Блокировка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Application.Exit();
+            }
+        }
+
 
         private Bitmap CreateImage(int Width, int Height)
         {
@@ -138,13 +189,13 @@ namespace PR32
             };
 
             //Добавление различным линий для текста
-            Brush[] colorLine =
+            Pen[] colorLine =
             {
-                Brushes.Black,
-                Brushes.Red,
-                Brushes.RoyalBlue,
-                Brushes.Green,
-                Brushes.White
+                Pens.Black,
+                Pens.Red,
+                Pens.RoyalBlue,
+                Pens.Green,
+                Pens.White
             };
 
             FontStyle[] fontStyles =
@@ -183,13 +234,13 @@ namespace PR32
 
             //Добавим немного помех
             //Линии из углов
-            //g.DrawLine(colorLine[random.Next(colorLine.Length)],
-                       //new Point(0, 0),
-                       //new Point(Width - 1, Height - 1));
+            g.DrawLine(colorLine[random.Next(colorLine.Length)],
+                       new Point(0, 0),
+                       new Point(Width - 1, Height - 1));
 
-           // g.DrawLine(colorLine[random.Next(colorLine.Length)],
-                       //new Point(0, Height - 1),
-                       //new Point(Width - 1, 0));
+            g.DrawLine(colorLine[random.Next(colorLine.Length)],
+                       new Point(0, Height - 1),
+                       new Point(Width - 1, 0));
 
 
             //Белые точки

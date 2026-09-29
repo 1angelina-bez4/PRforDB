@@ -9,24 +9,33 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Threading;
 
 
 namespace PR32
 {
-    public partial class Auth : Form
+    public partial class Auth : System.Windows.Forms.Form
     {
         int count;
         string tcaptcha;
+        bool isBlocked = false; //блокировка
+
+
 
         public Auth()
         {
             InitializeComponent();
         }
 
+
         private void Auth_Load(object sender, EventArgs e)
         {
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 30000;
+
             pictureBox3.Visible = false;
             txtcaptcha.Visible = false;
+
 
             //добавленный класс для работы  с получением настроек.
             Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -42,8 +51,42 @@ namespace PR32
             {
                 this.CreateImage(pictureBox3.Width, pictureBox3.Height);
             }
-            
         }
+        private void CheckFields()
+        {
+            string login = login_t.Text.Trim();
+            string password = passwd_t.Text.Trim();
+
+            bool filled = !string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password);
+
+
+            if (pictureBox3.Visible)
+            {
+                filled = filled && !string.IsNullOrEmpty(txtcaptcha.Text.Trim());
+            }
+
+            login_t.Enabled = filled && !isBlocked;
+        }
+
+        private async void BlockForTenSeconds()
+        {
+            isBlocked = true;
+            login_t.Enabled = false;
+
+            button1.Text = "";
+            button1.Enabled = false;
+            for (int i = 10; i > 0; i--)
+            {
+                button1.Text = $"Подождите {i} сек...";
+                await System.Threading.Tasks.Task.Delay(1000);
+            }
+            button1.Visible = false;
+            isBlocked = false;
+            button1.Enabled = true;
+            ShowCaptcha();
+            CheckFields();
+        }
+
         private void ShowCaptcha()
         {
             pictureBox3.Image = CreateImage(pictureBox3.Width, pictureBox3.Height);
@@ -63,7 +106,7 @@ namespace PR32
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 count++;
-                CheckAttempts();
+                ShowCaptcha();
                 return;
             }
 
@@ -77,7 +120,7 @@ namespace PR32
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     count++;
-                    CheckAttempts();
+                    BlockForTenSeconds();
                     txtcaptcha.Clear();
                     ShowCaptcha();   // обновляем капчу
                     return;
@@ -113,20 +156,19 @@ namespace PR32
                                 int userId = reader.GetInt32("UserID");
                                 int roleId = reader.GetInt32("UserRole");
 
-                                MessageBox.Show($"Вход выполнен! Роль: {roleId}",
+                                MessageBox.Show($"Вход выполнен!",
                                     "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 this.Hide();
                                 Import import = new Import();
                                 import.ShowDialog();
-                                this.Close(); // закрываем Auth
                             }
                             else
                             {
                                 MessageBox.Show("Неверный логин или пароль", "Ошибка входа",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 count++;
-                                CheckAttempts();
+                                // CheckAttempts();
 
                                 passwd_t.Clear();
                                 passwd_t.Focus();
@@ -150,7 +192,7 @@ namespace PR32
                 Settings settings = new Settings();
                 if (settings.ShowDialog() == DialogResult.OK)
                 {
-                    this.Show();
+                    this.ShowDialog();
                 }
                 else
                 {
@@ -159,23 +201,12 @@ namespace PR32
             }
         }
 
-        private void CheckAttempts()
-        {
-            if (count >= 3)
-            {
-                MessageBox.Show("Превышено количество попыток. Программа будет закрыта.",
-                    "Блокировка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Application.Exit();
-            }
-        }
-
-
         private Bitmap CreateImage(int Width, int Height)
         {
             Random random = new Random();
             Bitmap result = new Bitmap(Width, Height);
 
-            int Xpos = Width / 4; 
+            int Xpos = Width / 4;
             int Ypos = Height / 4;
 
             //Добавление различным цветов для текста 
@@ -216,7 +247,7 @@ namespace PR32
             tcaptcha = String.Empty;
             string ALF = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            for(int i = 0; i<4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 tcaptcha += ALF[random.Next(ALF.Length)];
             }
@@ -252,5 +283,7 @@ namespace PR32
             return result;
 
         }
+
+       
     }
 }

@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 
 namespace PR32
 {
-    public partial class Import : Form
+    public partial class Import : System.Windows.Forms.Form
     {
         public Import()
         {
@@ -162,8 +162,7 @@ namespace PR32
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide();
-                    new userForm().ShowDialog();
-                    this.Close();
+                    new ProductForm().ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -190,7 +189,7 @@ namespace PR32
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new userForm().ShowDialog();
+            new ProductForm().ShowDialog();
             this.Close();
         }
     

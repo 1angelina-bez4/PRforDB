@@ -6,13 +6,14 @@ using MySql.Data.MySqlClient;
 
 namespace PR32
 {
-    public partial class userForm : Form
+    public partial class ProductForm : System.Windows.Forms.Form
     {
         private const int PAGE_SIZE = 15;
         private int currentPage = 1;
         private int totalPages = 0;
+        int secInd = 0;
 
-        public userForm()
+        public ProductForm()
         {
             InitializeComponent();
         }
@@ -22,7 +23,16 @@ namespace PR32
             currentPage = 1;
             LoadData(currentPage);
             Pagination();
+            this.KeyPreview = true;
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
+
+            this.KeyDown += ResetTimer;
+            this.MouseClick += ResetTimer;
+
         }
+    
 
         private void LoadData(int page)
         {
@@ -75,6 +85,8 @@ namespace PR32
                         dataGridView1.DataSource = dt;
                     }
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -82,7 +94,27 @@ namespace PR32
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+         
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            secInd++;
+            if (secInd >= 5)
+            {
+                timer1.Stop();
+                this.Close();
+                MessageBox.Show("Блокировка экрана, подождите", "Сообщение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Auth().ShowDialog();
+                
+               
+            }
+        }
+
+        private void ResetTimer(object sender, EventArgs e)
+        {
+            secInd = 0;
+        }
         void Pagination()
         {
             for (int j = 0, count = this.Controls.Count; j < count; ++j)

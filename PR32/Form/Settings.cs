@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 
 namespace PR32
 {
-    public partial class Settings : Form
+    public partial class Settings : System.Windows.Forms.Form
     {
         public Settings()
         {

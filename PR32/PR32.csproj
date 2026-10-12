@@ -77,11 +77,11 @@
     <Compile Include="Form\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\userForm.cs">
+    <Compile Include="Form\ProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\userForm.Designer.cs">
-      <DependentUpon>userForm.cs</DependentUpon>
+    <Compile Include="Form\ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
@@ -101,8 +101,8 @@
     <EmbeddedResource Include="Form\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\userForm.resx">
-      <DependentUpon>userForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form\ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -113,11 +113,54 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\free-icon-save-file-11693736.png" />
-    <Content Include="Image\free-icon-settings-cog-icon-11084403.png" />
-    <Content Include="Image\free-icon-sync-12572298.png" />
-    <Content Include="Image\icon.ico" />
-    <Content Include="Image\R.png" />
+    <Content Include="Image\A782R4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\D374E4.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\free-icon-save-file-11693736.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\free-icon-settings-cog-icon-11084403.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\free-icon-sync-12572298.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\K830R4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\K849L6.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\O393R4.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\picture.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\R.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\S037R9.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\S983R4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Z374R3.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Z469T7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Z472R4.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

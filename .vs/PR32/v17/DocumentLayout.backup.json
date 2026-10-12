@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|d:\\study\\\u0431\u0434\\\u043F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\pr3211\\pr32\\pr32\\import.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|solutionrelative:pr32\\import.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|d:\\study\\\u0431\u0434\\\u043F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\pr3211\\pr32\\pr32\\form\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|solutionrelative:pr32\\form\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|d:\\study\\\u0431\u0434\\\u043F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\pr3211\\pr32\\pr32\\import.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|solutionrelative:pr32\\import.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|d:\\study\\\u0431\u0434\\\u043F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\pr3211\\pr32\\pr32\\form\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|solutionrelative:pr32\\form\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\pr32\\form\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B506D73A-1721-48CE-843B-D09276E6B890}|PR32\\PR32.csproj|solutionrelative:pr32\\form\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,27 +47,42 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Import.cs",
-              "DocumentMoniker": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Import.cs",
-              "RelativeDocumentMoniker": "PR32\\Import.cs",
-              "ToolTip": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Import.cs",
-              "RelativeToolTip": "PR32\\Import.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
+              "Title": "ProductForm.cs",
+              "DocumentMoniker": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\ProductForm.cs",
+              "RelativeDocumentMoniker": "PR32\\Form\\ProductForm.cs",
+              "ToolTip": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\ProductForm.cs*",
+              "RelativeToolTip": "PR32\\Form\\ProductForm.cs*",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAmwOAAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-21T15:35:44.125Z",
+              "WhenOpened": "2026-10-12T19:02:34.002Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Import.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Import.cs",
-              "RelativeDocumentMoniker": "PR32\\Import.cs",
-              "ToolTip": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Import.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "PR32\\Import.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Title": "ProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\ProductForm.cs",
+              "RelativeDocumentMoniker": "PR32\\Form\\ProductForm.cs",
+              "ToolTip": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\ProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "PR32\\Form\\ProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-21T15:07:06.822Z",
+              "WhenOpened": "2026-09-28T15:59:10.924Z",
               "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Auth.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\Auth.cs",
+              "RelativeDocumentMoniker": "PR32\\Form\\Auth.cs",
+              "ToolTip": "D:\\study\\\u0411\u0414\\\u041F\u0440\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\PR3211\\PR32\\PR32\\Form\\Auth.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "PR32\\Form\\Auth.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T16:35:11.349Z"
             }
           ]
         }

@@ -1,0 +1,24 @@
+# Игнорировать файлы сборки Visual Studio
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+# Игнорировать файлы Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Игнорировать скомпилированные файлы
+*.exe
+*.pdb
+*.dll
+*.log
+
+# Игнорировать системные файлы
+.DS_Store
+Thumbs.db

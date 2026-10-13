@@ -17,23 +17,54 @@ namespace PR32
         public ProductForm()
         {
             InitializeComponent();
-
         }
 
         private void userForm_Load(object sender, EventArgs e)
         {
+            txtSearch.Text = "Поиск";
+            txtSearch.ForeColor = Color.FromArgb(102, 255, 102);
+
+            cbSort.Items.Clear();
+            cbSort.Items.Add("По возрастанию");
+            cbSort.Items.Add("По убыванию");
+            cbSort.SelectedIndex = 0;
+
+            cbDiscount.Items.Clear();
+            cbDiscount.Items.Add("Все диапозоны");
+            cbDiscount.Items.Add("0-9 %");
+            cbDiscount.Items.Add("10-14 %");
+            cbDiscount.Items.Add("15% и более");
+            cbDiscount.SelectedIndex = 0;
+
             currentPage = 1;
             LoadData(currentPage);
-
         }
 
+        private void SortDiscount(string connection)
+        {
+            
+        }
+
+        private void FiltDiscount(string cmd )
+        {
+            ClassConnect connect = new ClassConnect();
+            using(MySqlConnection con = new MySqlConnection(connect.connect))
+            {
+                con.Open();
+
+                MySqlDataAdapter ad = new MySqlDataAdapter(cmd, con);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+
+                cbSort.DataSource = dt;
+            }
+        }
         private void LoadData(int page)
         {
             string connect = $"host={Properties.Settings.Default.host};" +
                              $"uid={Properties.Settings.Default.uid};" +
                              $"pwd={Properties.Settings.Default.pwd};" +
                              $"database=trade;";
-
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connect))
@@ -58,7 +89,7 @@ namespace PR32
                             p.ProductCost, 
                             p.ProductManufacturer, 
                             p.ProductDescription, 
-                            p.ProductDiscountAmount,
+                            p.ProductDiscountAmountMax,
                             p.ProductPhoto
                         FROM product p
                         ORDER BY p.ProductName
@@ -267,6 +298,27 @@ namespace PR32
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = cbSort.SelectedIndex;
+            switch (i)
+            {
+                case 0:
+                    SortDiscount("SELECT * FROM product;");
+                    break;
+                case 1:
+                    SortDiscount("SELECT * FROM product WHERE ProductDiscountAmountMax < 10;");
+                    break;
+                case 2:
+                    SortDiscount("SELECT * FROM product WHERE ProductDiscountAmountMax >= 10 AND  ProductDiscountAmountMax < 15;");
+                    break;
+                case 3:
+                    SortDiscount("SELECT * FROM product WHERE ProductDiscountAmountMax >= 15;");
+                    break;
+            }
+
         }
     }
 }

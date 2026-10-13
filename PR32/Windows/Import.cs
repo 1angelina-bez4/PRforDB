@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 
 namespace PR32
 {
-    public partial class Import : Form
+    public partial class Import : System.Windows.Forms.Form
     {
         public Import()
         {

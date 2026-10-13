@@ -1,6 +1,6 @@
 ﻿namespace PR32
 {
-    partial class ProductForm
+    partial class ProductForm 
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,8 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cbSort = new System.Windows.Forms.ComboBox();
             this.cbDiscount = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             this.label5.Location = new System.Drawing.Point(298, 29);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 35);
+            this.label5.Size = new System.Drawing.Size(0, 41);
             this.label5.TabIndex = 28;
             // 
             // button1
@@ -65,7 +67,7 @@
             this.button1.TabIndex = 30;
             this.button1.Text = "Выйти";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // dataGridView1
             // 
@@ -91,7 +93,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
             this.txtSearch.Location = new System.Drawing.Point(12, 12);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 41);
+            this.txtSearch.Size = new System.Drawing.Size(332, 49);
             this.txtSearch.TabIndex = 32;
             // 
             // cbSort
@@ -102,9 +104,8 @@
             this.cbSort.FormattingEnabled = true;
             this.cbSort.Location = new System.Drawing.Point(369, 11);
             this.cbSort.Name = "cbSort";
-            this.cbSort.Size = new System.Drawing.Size(278, 41);
+            this.cbSort.Size = new System.Drawing.Size(278, 50);
             this.cbSort.TabIndex = 33;
-            this.cbSort.SelectedIndexChanged += new System.EventHandler(this.cbSort_SelectedIndexChanged);
             // 
             // cbDiscount
             // 
@@ -114,15 +115,35 @@
             this.cbDiscount.FormattingEnabled = true;
             this.cbDiscount.Location = new System.Drawing.Point(670, 11);
             this.cbDiscount.Name = "cbDiscount";
-            this.cbDiscount.Size = new System.Drawing.Size(278, 41);
+            this.cbDiscount.Size = new System.Drawing.Size(278, 50);
             this.cbDiscount.TabIndex = 34;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(509, 594);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 42);
+            this.lblStatus.TabIndex = 35;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(13, 594);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(0, 42);
+            this.linkLabel1.TabIndex = 36;
             // 
             // ProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cbDiscount);
             this.Controls.Add(this.cbSort);
             this.Controls.Add(this.txtSearch);
@@ -135,7 +156,7 @@
             this.Name = "ProductForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Товары";
-            this.Load += new System.EventHandler(this.userForm_Load);
+            this.Load += new System.EventHandler(this.ProductForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,5 +171,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cbSort;
         private System.Windows.Forms.ComboBox cbDiscount;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

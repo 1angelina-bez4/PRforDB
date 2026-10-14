@@ -41,11 +41,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmdUnit = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmdCat = new System.Windows.Forms.ComboBox();
+            this.cmdSup = new System.Windows.Forms.ComboBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -169,14 +169,14 @@
             this.textBox1.Size = new System.Drawing.Size(304, 41);
             this.textBox1.TabIndex = 11;
             // 
-            // comboBox1
+            // cmdUnit
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(316, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(304, 41);
-            this.comboBox1.TabIndex = 12;
+            this.cmdUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmdUnit.FormattingEnabled = true;
+            this.cmdUnit.Location = new System.Drawing.Point(316, 89);
+            this.cmdUnit.Name = "cmdUnit";
+            this.cmdUnit.Size = new System.Drawing.Size(304, 41);
+            this.cmdUnit.TabIndex = 12;
             // 
             // textBox2
             // 
@@ -194,23 +194,23 @@
             this.textBox3.Size = new System.Drawing.Size(304, 41);
             this.textBox3.TabIndex = 14;
             // 
-            // comboBox2
+            // cmdCat
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(316, 324);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(304, 41);
-            this.comboBox2.TabIndex = 15;
+            this.cmdCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmdCat.FormattingEnabled = true;
+            this.cmdCat.Location = new System.Drawing.Point(316, 324);
+            this.cmdCat.Name = "cmdCat";
+            this.cmdCat.Size = new System.Drawing.Size(304, 41);
+            this.cmdCat.TabIndex = 15;
             // 
-            // comboBox3
+            // cmdSup
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(316, 277);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(304, 41);
-            this.comboBox3.TabIndex = 16;
+            this.cmdSup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmdSup.FormattingEnabled = true;
+            this.cmdSup.Location = new System.Drawing.Point(316, 277);
+            this.cmdSup.Name = "cmdSup";
+            this.cmdSup.Size = new System.Drawing.Size(304, 41);
+            this.cmdSup.TabIndex = 16;
             // 
             // textBox4
             // 
@@ -268,6 +268,7 @@
             this.btnAdd.TabIndex = 22;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -351,11 +352,11 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmdSup);
+            this.Controls.Add(this.cmdCat);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmdUnit);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -373,8 +374,12 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление/Редактирование";
+            this.Load += new System.EventHandler(this.AddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -396,11 +401,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmdUnit;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmdCat;
+        private System.Windows.Forms.ComboBox cmdSup;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;

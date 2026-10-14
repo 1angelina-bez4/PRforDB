@@ -342,9 +342,9 @@ namespace PR32
 
             int startX = linkLabel1.Location.X;
             int startY = linkLabel1.Location.Y;
-            int step = 40; 
+            int step = 40;
 
- 
+
             for (int i = 0; i < totalPagesCalc; ++i)
             {
                 LinkLabel ll = new LinkLabel();
@@ -370,7 +370,6 @@ namespace PR32
                 ll.BringToFront();
             }
         }
-
         private void LinkLabel_Click(object sender, EventArgs e)
         {
             foreach (Control ctrl in this.Controls)
@@ -398,7 +397,7 @@ namespace PR32
         {
             this.Hide();
             new AddEdit().ShowDialog();
-            this.Close();
+            this.Show();
         }
     }
 }

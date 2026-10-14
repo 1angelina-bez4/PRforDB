@@ -48,10 +48,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
-            this.label5.Location = new System.Drawing.Point(298, 29);
+            this.label5.Location = new System.Drawing.Point(310, 8);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 41);
+            this.label5.Size = new System.Drawing.Size(0, 35);
             this.label5.TabIndex = 28;
             // 
             // button1
@@ -78,7 +78,7 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 104);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
@@ -86,14 +86,15 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.ColumnHeaderSelect;
             this.dataGridView1.Size = new System.Drawing.Size(982, 514);
             this.dataGridView1.TabIndex = 31;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // txtSearch
             // 
             this.txtSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
-            this.txtSearch.Location = new System.Drawing.Point(12, 12);
+            this.txtSearch.Location = new System.Drawing.Point(12, 57);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(332, 49);
+            this.txtSearch.Size = new System.Drawing.Size(380, 41);
             this.txtSearch.TabIndex = 32;
             // 
             // cbSort
@@ -102,9 +103,9 @@
             this.cbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSort.ForeColor = System.Drawing.Color.SeaGreen;
             this.cbSort.FormattingEnabled = true;
-            this.cbSort.Location = new System.Drawing.Point(369, 11);
+            this.cbSort.Location = new System.Drawing.Point(398, 57);
             this.cbSort.Name = "cbSort";
-            this.cbSort.Size = new System.Drawing.Size(278, 50);
+            this.cbSort.Size = new System.Drawing.Size(312, 41);
             this.cbSort.TabIndex = 33;
             // 
             // cbDiscount
@@ -113,32 +114,32 @@
             this.cbDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDiscount.ForeColor = System.Drawing.Color.SeaGreen;
             this.cbDiscount.FormattingEnabled = true;
-            this.cbDiscount.Location = new System.Drawing.Point(670, 11);
+            this.cbDiscount.Location = new System.Drawing.Point(716, 57);
             this.cbDiscount.Name = "cbDiscount";
-            this.cbDiscount.Size = new System.Drawing.Size(278, 50);
+            this.cbDiscount.Size = new System.Drawing.Size(278, 41);
             this.cbDiscount.TabIndex = 34;
             // 
             // lblStatus
             // 
-            this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(509, 594);
+            this.lblStatus.Location = new System.Drawing.Point(6, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 42);
+            this.lblStatus.Size = new System.Drawing.Size(0, 33);
             this.lblStatus.TabIndex = 35;
             // 
             // linkLabel1
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(13, 594);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 663);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(0, 42);
+            this.linkLabel1.Size = new System.Drawing.Size(0, 33);
             this.linkLabel1.TabIndex = 36;
             // 
             // ProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 42F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);

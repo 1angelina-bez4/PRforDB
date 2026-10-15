@@ -91,9 +91,10 @@ namespace PR32
                 using (MySqlConnection connection = new MySqlConnection(connect))
                 {
                     connection.Open();
-                    string query = @"SELECT UserID, UserRole 
-                             FROM user 
-                             WHERE UserLogin = @login AND UserPassword = @password;";
+                    string query = @"
+                                        SELECT UserID, Concat(UserSurname,UserName,UserPatronymic) as UserFullName, UserRole 
+                                             FROM user 
+                                        WHERE UserLogin = @login AND UserPassword = @password;";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -104,33 +105,26 @@ namespace PR32
                         {
                             if (reader.Read())
                             {
-                                count = 0;
-
                                 int userId = reader.GetInt32("UserID");
-                                int roleId = reader.GetInt32("UserRole");
-
-                                MessageBox.Show($"Вход выполнен! Роль: {roleId}",
-                                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                string fullName = reader.GetString("UserFullName");
+                                int roleId = reader.GetInt32("UserRole"); // 1, 2, или 3
 
                                 this.Hide();
-                                Import import = new Import();
-                                import.ShowDialog();
-                                this.Close(); // закрываем Auth
-                            }
-                            else
-                            {
-                                MessageBox.Show("Неверный логин или пароль", "Ошибка входа",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                count++;
-                                CheckAttempts();
 
-                                passwd_t.Clear();
-                                passwd_t.Focus();
-
-                                if (count >= 2)
+                                if (roleId == 1 || roleId == 2)
                                 {
-                                    ShowCaptcha();
+                                    // Админ/Менеджер -> Импорт
+                                    Import importForm = new Import();
+                                    importForm.ShowDialog();
                                 }
+                                else
+                                {
+                                    // Клиент (roleId == 3) -> Товары
+                                    ProductForm productForm = new ProductForm(userId, fullName, roleId, false);
+                                    productForm.ShowDialog();
+                                }
+
+                                this.Close();
                             }
                         }
                     }
@@ -228,8 +222,7 @@ namespace PR32
                 color[random.Next(color.Length)],
                 new PointF(Xpos, Ypos));
 
-            //Добавим немного помех
-            //Линии из углов
+
             g.DrawLine(colorLine[random.Next(colorLine.Length)],
                        new Point(0, 0),
                        new Point(Width - 1, Height - 1));
@@ -246,6 +239,17 @@ namespace PR32
                         result.SetPixel(i, j, Color.White);
 
             return result;
+
+        }
+
+        private void btnGuest_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            // Для гостя roleId = 3 (как клиент), но isGuest = true
+            ProductForm productForm = new ProductForm(null, "Гость", 3, true);
+            productForm.ShowDialog();
+            this.Close();
 
         }
     }

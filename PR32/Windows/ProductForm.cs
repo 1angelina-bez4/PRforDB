@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using PR32.Windows;
@@ -15,10 +16,33 @@ namespace PR32
         private int currentPage = 1;
         private int totalFilteredRecords = 0;
         private int totalAllRecords = 0;
+        private int? _userId;
+        private string _userName;
+        private int _roleId; // 1=Админ, 2=Менеджер, 3=Клиент
+        private bool _isGuest;
+        private Dictionary<string, int> _cart = new Dictionary<string, int>();
 
-        public ProductForm()
+        public ProductForm(int? userId, string userName, int roleId, bool isGuest)
         {
             InitializeComponent();
+            _userId = userId;
+            _userName = userName;
+            _roleId = roleId;
+            _isGuest = isGuest;
+
+
+            bool canEdit = (_roleId == 1 || _roleId == 2);
+
+            if (canEdit)
+            {
+                dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            }
+            else
+            {
+                dataGridView1.CellMouseDown += dataGridView1_CellMouseDown;
+            }
+
+            btnCheckout.Visible = !_isGuest && _roleId == 3; // Показываем только Клиенту (не гостю)
 
             // Подписки на события
             txtSearch.TextChanged += TxtSearch_TextChanged;
@@ -89,8 +113,7 @@ namespace PR32
 
         private void LoadData(int page)
         {
-            // ИСПРАВЛЕНО: host заменен на server для надежности
-            string connect = $"server={Properties.Settings.Default.host};" +
+            string connect = $"host={Properties.Settings.Default.host};" +
                              $"uid={Properties.Settings.Default.uid};" +
                              $"pwd={Properties.Settings.Default.pwd};" +
                              $"database=trade;";
@@ -357,21 +380,15 @@ namespace PR32
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 4)
-            {
-                
-                string productId = dataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString();
+            if (e.RowIndex < 0) return;
 
-                this.Hide();
+            // Получаем артикул товара из кликнутой строки
+            string articleNumber = dataGridView1.Rows[e.RowIndex].Cells["ProductArticleNumber"].Value.ToString();
 
+            // Открываем форму добавления/редактирования
+            AddEdit addEditForm = new AddEdit(articleNumber);
+            addEditForm.ShowDialog();
 
-                AddEdit addEditForm = new AddEdit(productId);
-                addEditForm.ShowDialog();
-
-                LoadData(currentPage);
-
-                this.Show();
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -379,6 +396,51 @@ namespace PR32
             this.Hide();
             new Order().ShowDialog();
             this.Show();
+        }
+
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            {
+                contextMenuStrip1.Show(dataGridView1, e.Location);
+
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        // Обработчик пункта меню "Добавить к заказу"
+        private void добавитьКЗаказуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            string articleNumber = dataGridView1.SelectedRows[0].Cells["ProductArticleNumber"].Value.ToString();
+
+            try
+            {
+                _cart.Add(articleNumber, 1);
+            }
+            catch (ArgumentException)
+            {
+                _cart[articleNumber]++;
+            }
+
+            UpdateCartButton();
+        }
+
+        private void UpdateCartButton()
+        {
+            int totalItems = _cart.Values.Sum();
+
+            if (totalItems > 0)
+            {
+                btnCheckout.Visible = true;
+                btnCheckout.Text = $"Оформить заказ ({totalItems} шт.)";
+            }
+            else
+            {
+                btnCheckout.Visible = false;
+            }
         }
     }
 }

@@ -5,34 +5,31 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using PR32.Windows;
 
 namespace PR32
 {
-    public partial class ProductForm : System.Windows.Forms.Form
+    public partial class ProductForm : Form
     {
         private const int PAGE_SIZE = 15;
         private int currentPage = 1;
-        private int totalFilteredRecords = 0; 
-        private int totalAllRecords = 0;      
+        private int totalFilteredRecords = 0;
+        private int totalAllRecords = 0;
 
         public ProductForm()
         {
             InitializeComponent();
 
-     
+            // Подписки на события
             txtSearch.TextChanged += TxtSearch_TextChanged;
             cbSort.SelectedIndexChanged += CbSort_SelectedIndexChanged;
             cbDiscount.SelectedIndexChanged += CbDiscount_SelectedIndexChanged;
-
-    
             txtSearch.Enter += TxtSearch_Enter;
             txtSearch.Leave += TxtSearch_Leave;
         }
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            // Инициализация ComboBox
             cbSort.Items.Clear();
             cbSort.Items.Add("По умолчанию");
             cbSort.Items.Add("По возрастанию цены");
@@ -55,8 +52,8 @@ namespace PR32
 
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (txtSearch.ForeColor == Color.Gray) return; 
-            currentPage = 1; 
+            if (txtSearch.ForeColor == Color.Gray) return;
+            currentPage = 1;
             LoadData(currentPage);
         }
 
@@ -92,7 +89,8 @@ namespace PR32
 
         private void LoadData(int page)
         {
-            string connect = $"host={Properties.Settings.Default.host};" +
+            // ИСПРАВЛЕНО: host заменен на server для надежности
+            string connect = $"server={Properties.Settings.Default.host};" +
                              $"uid={Properties.Settings.Default.uid};" +
                              $"pwd={Properties.Settings.Default.pwd};" +
                              $"database=trade;";
@@ -103,37 +101,27 @@ namespace PR32
                 {
                     con.Open();
 
-                    //Получаем ОБЩЕЕ количество товаров в базе (для "Y" в "X из Y")
                     using (MySqlCommand cmdAll = new MySqlCommand("SELECT COUNT(*) FROM product", con))
                     {
                         totalAllRecords = Convert.ToInt32(cmdAll.ExecuteScalar());
                     }
 
-                    //Динамическое построение условий WHERE
                     List<string> whereClauses = new List<string>();
                     List<MySqlParameter> parameters = new List<MySqlParameter>();
 
-                    //Поиск по наименованию
                     if (!string.IsNullOrWhiteSpace(txtSearch.Text) && txtSearch.Text != "Поиск по наименованию...")
                     {
                         whereClauses.Add("p.ProductName LIKE @search");
                         parameters.Add(new MySqlParameter("@search", "%" + txtSearch.Text + "%"));
                     }
 
-                    //Фильтрация по скидке
                     string discountFilter = cbDiscount.SelectedItem?.ToString() ?? "Все диапазоны";
                     if (discountFilter == "0-9,99%")
-                    {
                         whereClauses.Add("p.ProductDiscountAmountMax >= 0 AND p.ProductDiscountAmountMax < 10");
-                    }
                     else if (discountFilter == "10-14,99%")
-                    {
                         whereClauses.Add("p.ProductDiscountAmountMax >= 10 AND p.ProductDiscountAmountMax < 15");
-                    }
                     else if (discountFilter == "15% и более")
-                    {
                         whereClauses.Add("p.ProductDiscountAmountMax >= 15");
-                    }
 
                     string whereSql = whereClauses.Count > 0 ? "WHERE " + string.Join(" AND ", whereClauses) : "";
 
@@ -144,25 +132,18 @@ namespace PR32
                         totalFilteredRecords = Convert.ToInt32(cmdCount.ExecuteScalar());
                     }
 
-                    // Динамическая сортировка
-                    string orderBy = "ORDER BY p.ProductName ASC"; // По умолчанию
+                    string orderBy = "ORDER BY p.ProductName ASC";
                     string sortOption = cbSort.SelectedItem?.ToString() ?? "По умолчанию";
                     if (sortOption == "По возрастанию цены")
                         orderBy = "ORDER BY p.ProductCost ASC";
                     else if (sortOption == "По убыванию цены")
                         orderBy = "ORDER BY p.ProductCost DESC";
 
-
                     int offset = (page - 1) * PAGE_SIZE;
                     string query = $@"
                         SELECT 
-                            p.ProductArticleNumber,
-                            p.ProductName, 
-                            p.ProductCost, 
-                            p.ProductManufacturer, 
-                            p.ProductDescription, 
-                            p.ProductDiscountAmountMax,
-                            p.ProductPhoto
+                            p.ProductArticleNumber, p.ProductName, p.ProductCost, 
+                            p.ProductManufacturer, p.ProductDescription, p.ProductDiscountAmountMax, p.ProductPhoto
                         FROM product p
                         {whereSql}
                         {orderBy}
@@ -171,7 +152,6 @@ namespace PR32
                     parameters.Add(new MySqlParameter("@limit", PAGE_SIZE));
                     parameters.Add(new MySqlParameter("@offset", offset));
 
-                    // Настройка DataGridView (только при первой загрузке)
                     if (dataGridView1.Columns.Count == 0)
                     {
                         SetupDataGridView();
@@ -181,7 +161,6 @@ namespace PR32
                         dataGridView1.Rows.Clear();
                     }
 
-                    // Заглушка для фото
                     Image defaultImage = null;
                     string defaultImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Image", "picture.png");
                     if (File.Exists(defaultImagePath))
@@ -191,7 +170,6 @@ namespace PR32
 
                     int rowsAdded = 0;
 
-                    //Чтение и отображение данных
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddRange(parameters.ToArray());
@@ -206,40 +184,30 @@ namespace PR32
                                 string description = Convert.ToString(read[4]) ?? "Нет описания";
                                 string discountStr = Convert.ToString(read[5]) ?? "0";
 
-                                double cost = 0;
-                                double discount = 0;
+                                double cost = 0, discount = 0;
                                 double.TryParse(costStr, out cost);
                                 double.TryParse(discountStr, out discount);
 
-                                // Формирование цены с зачеркиванием
                                 string priceDisplay = $"{cost} руб.";
                                 if (discount > 0)
                                 {
                                     double finalPrice = cost - (cost * (discount / 100.0));
-                                    string finalPriceStr = finalPrice.ToString("0.##");
-                                    priceDisplay = $"{AddStrikethrough(costStr)} {finalPriceStr} руб.";
+                                    priceDisplay = $"{AddStrikethrough(costStr)} {finalPrice.ToString("0.##")} руб.";
                                 }
 
-                                string infoText = $"Наименование: {title}\n" +
-                                                  $"Производитель: {manufacturer}\n" +
-                                                  $"Описание: {description}\n" +
-                                                  $"Цена: {priceDisplay}";
+                                string infoText = $"Наименование: {title}\nПроизводитель: {manufacturer}\nОписание: {description}\nЦена: {priceDisplay}";
 
-                                // Загрузка картинки
                                 Image img = defaultImage;
                                 string dbValue = Convert.ToString(read[6]);
                                 if (!string.IsNullOrWhiteSpace(dbValue))
                                 {
-                                    string cleanFileName = Path.GetFileName(dbValue);
-                                    string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Image", cleanFileName);
-                                    if (File.Exists(fullPath))
-                                    {
-                                        img = Image.FromFile(fullPath);
-                                    }
+                                    string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Image", Path.GetFileName(dbValue));
+                                    if (File.Exists(fullPath)) img = Image.FromFile(fullPath);
                                 }
 
                                 string discountText = (discount == 0) ? "Нет" : $"{discount}%";
 
+                                // Теперь здесь 5 аргументов, что соответствует 5 столбцам в SetupDataGridView
                                 int rowIndex = dataGridView1.Rows.Add(id, img, infoText, discountText, "Подробнее");
                                 dataGridView1.Rows[rowIndex].Height = 120;
                                 rowsAdded++;
@@ -253,7 +221,6 @@ namespace PR32
                     }
 
                     lblStatus.Text = $"Выведено: {rowsAdded} из {totalFilteredRecords} (Всего в базе: {totalAllRecords})";
-
                     Pagination();
                 }
             }
@@ -282,41 +249,41 @@ namespace PR32
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView1.DefaultCellStyle.Padding = new Padding(5);
 
-            // Колонка 0: ID (скрытая)
-            DataGridViewTextBoxColumn idcolumn = new DataGridViewTextBoxColumn { Name = "ID", Visible = false };
-            dataGridView1.Columns.Add(idcolumn);
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ID", Visible = false });
 
-            // Колонка 1: Фото
-            DataGridViewImageColumn photo = new DataGridViewImageColumn
+            dataGridView1.Columns.Add(new DataGridViewImageColumn
             {
                 HeaderText = "Фото",
                 Name = "Photo",
                 Width = 120,
                 ImageLayout = DataGridViewImageCellLayout.Zoom
-            };
-            dataGridView1.Columns.Add(photo);
+            });
 
-            // Колонка 2: Информация
-            DataGridViewTextBoxColumn info = new DataGridViewTextBoxColumn
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Информация о товаре",
                 Name = "info",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 MinimumWidth = 150,
                 DefaultCellStyle = { WrapMode = DataGridViewTriState.True, Font = new Font("Comic Sans MS", 11F, FontStyle.Regular), Padding = new Padding(5) }
-            };
-            dataGridView1.Columns.Add(info);
+            });
 
-            // Колонка 3: Скидка
-            DataGridViewTextBoxColumn disc = new DataGridViewTextBoxColumn
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Скидка",
                 Name = "Discount",
                 Width = 90,
                 DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter, Font = new Font("Comic Sans MS", 12F, FontStyle.Bold), ForeColor = Color.SeaGreen }
-            };
-            dataGridView1.Columns.Add(disc);
+            });
 
+            dataGridView1.Columns.Add(new DataGridViewButtonColumn
+            {
+                HeaderText = "Действия",
+                Name = "Action",
+                Width = 100,
+                UseColumnTextForButtonValue = true,
+                Text = "Подробнее"
+            });
         }
 
         void Pagination()
@@ -344,32 +311,28 @@ namespace PR32
             int startY = linkLabel1.Location.Y;
             int step = 40;
 
-
             for (int i = 0; i < totalPagesCalc; ++i)
             {
-                LinkLabel ll = new LinkLabel();
-                ll.Text = (i + 1).ToString();
-                ll.Name = "page" + i;
-                ll.AutoSize = true;
-
-                ll.Location = new Point(startX + (i * step), startY);
-
-                ll.LinkColor = Color.FromArgb(102, 255, 102);
-                ll.ActiveLinkColor = Color.FromArgb(80, 200, 80);
-                ll.VisitedLinkColor = Color.FromArgb(102, 255, 102);
-                ll.Font = new Font("Comic Sans MS", 13.8f, FontStyle.Bold);
+                LinkLabel ll = new LinkLabel
+                {
+                    Text = (i + 1).ToString(),
+                    Name = "page" + i,
+                    AutoSize = true,
+                    Location = new Point(startX + (i * step), startY),
+                    LinkColor = Color.FromArgb(102, 255, 102),
+                    ActiveLinkColor = Color.FromArgb(80, 200, 80),
+                    VisitedLinkColor = Color.FromArgb(102, 255, 102),
+                    Font = new Font("Comic Sans MS", 13.8f, FontStyle.Bold)
+                };
 
                 ll.Click += LinkLabel_Click;
-
-                if (i + 1 == currentPage)
-                    ll.LinkBehavior = LinkBehavior.NeverUnderline;
-                else
-                    ll.LinkBehavior = LinkBehavior.AlwaysUnderline;
+                ll.LinkBehavior = (i + 1 == currentPage) ? LinkBehavior.NeverUnderline : LinkBehavior.AlwaysUnderline;
 
                 this.Controls.Add(ll);
                 ll.BringToFront();
             }
         }
+
         private void LinkLabel_Click(object sender, EventArgs e)
         {
             foreach (Control ctrl in this.Controls)
@@ -387,7 +350,6 @@ namespace PR32
             LoadData(currentPage);
         }
 
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -395,8 +357,27 @@ namespace PR32
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 4)
+            {
+                
+                string productId = dataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString();
+
+                this.Hide();
+
+
+                AddEdit addEditForm = new AddEdit(productId);
+                addEditForm.ShowDialog();
+
+                LoadData(currentPage);
+
+                this.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             this.Hide();
-            new AddEdit().ShowDialog();
+            new Order().ShowDialog();
             this.Show();
         }
     }

@@ -58,6 +58,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +68,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(271, 33);
+            this.label1.Size = new System.Drawing.Size(341, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Наименование товара:";
             // 
@@ -76,7 +77,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(251, 33);
+            this.label2.Size = new System.Drawing.Size(315, 42);
             this.label2.TabIndex = 1;
             this.label2.Text = "Единица измерения:";
             // 
@@ -85,7 +86,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 33);
+            this.label3.Size = new System.Drawing.Size(200, 42);
             this.label3.TabIndex = 2;
             this.label3.Text = "Цена товара:";
             // 
@@ -94,7 +95,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(10, 191);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(273, 33);
+            this.label4.Size = new System.Drawing.Size(341, 42);
             this.label4.TabIndex = 3;
             this.label4.Text = "Максимальная скидка:";
             // 
@@ -103,7 +104,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 233);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(204, 33);
+            this.label5.Size = new System.Drawing.Size(254, 42);
             this.label5.TabIndex = 4;
             this.label5.Text = "Производитель:";
             // 
@@ -112,7 +113,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(14, 280);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 33);
+            this.label6.Size = new System.Drawing.Size(189, 42);
             this.label6.TabIndex = 5;
             this.label6.Text = "Поставщик:";
             // 
@@ -121,7 +122,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(14, 327);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(138, 33);
+            this.label7.Size = new System.Drawing.Size(173, 42);
             this.label7.TabIndex = 6;
             this.label7.Text = "Категория:";
             // 
@@ -130,7 +131,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(14, 378);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 33);
+            this.label8.Size = new System.Drawing.Size(127, 42);
             this.label8.TabIndex = 7;
             this.label8.Text = "Скидка:";
             // 
@@ -139,7 +140,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(14, 437);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(275, 33);
+            this.label9.Size = new System.Drawing.Size(344, 42);
             this.label9.TabIndex = 8;
             this.label9.Text = "Количество на складе:";
             // 
@@ -148,7 +149,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(14, 488);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(225, 33);
+            this.label10.Size = new System.Drawing.Size(282, 42);
             this.label10.TabIndex = 9;
             this.label10.Text = "Описание  товара:\r\n";
             // 
@@ -157,7 +158,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(771, 9);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(173, 33);
+            this.label11.Size = new System.Drawing.Size(215, 42);
             this.label11.TabIndex = 10;
             this.label11.Text = "Изображение:";
             // 
@@ -166,7 +167,7 @@
             this.textBox1.Location = new System.Drawing.Point(316, 42);
             this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(304, 41);
+            this.textBox1.Size = new System.Drawing.Size(304, 49);
             this.textBox1.TabIndex = 11;
             // 
             // cmdUnit
@@ -175,7 +176,7 @@
             this.cmdUnit.FormattingEnabled = true;
             this.cmdUnit.Location = new System.Drawing.Point(316, 89);
             this.cmdUnit.Name = "cmdUnit";
-            this.cmdUnit.Size = new System.Drawing.Size(304, 41);
+            this.cmdUnit.Size = new System.Drawing.Size(304, 50);
             this.cmdUnit.TabIndex = 12;
             // 
             // textBox2
@@ -183,7 +184,7 @@
             this.textBox2.Location = new System.Drawing.Point(316, 136);
             this.textBox2.MaxLength = 6;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(304, 41);
+            this.textBox2.Size = new System.Drawing.Size(304, 49);
             this.textBox2.TabIndex = 13;
             // 
             // textBox3
@@ -191,7 +192,7 @@
             this.textBox3.Location = new System.Drawing.Point(316, 183);
             this.textBox3.MaxLength = 3;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(304, 41);
+            this.textBox3.Size = new System.Drawing.Size(304, 49);
             this.textBox3.TabIndex = 14;
             // 
             // cmdCat
@@ -200,7 +201,7 @@
             this.cmdCat.FormattingEnabled = true;
             this.cmdCat.Location = new System.Drawing.Point(316, 324);
             this.cmdCat.Name = "cmdCat";
-            this.cmdCat.Size = new System.Drawing.Size(304, 41);
+            this.cmdCat.Size = new System.Drawing.Size(304, 50);
             this.cmdCat.TabIndex = 15;
             // 
             // cmdSup
@@ -209,7 +210,7 @@
             this.cmdSup.FormattingEnabled = true;
             this.cmdSup.Location = new System.Drawing.Point(316, 277);
             this.cmdSup.Name = "cmdSup";
-            this.cmdSup.Size = new System.Drawing.Size(304, 41);
+            this.cmdSup.Size = new System.Drawing.Size(304, 50);
             this.cmdSup.TabIndex = 16;
             // 
             // textBox4
@@ -217,7 +218,7 @@
             this.textBox4.Location = new System.Drawing.Point(316, 230);
             this.textBox4.MaxLength = 100;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(304, 41);
+            this.textBox4.Size = new System.Drawing.Size(304, 49);
             this.textBox4.TabIndex = 17;
             // 
             // textBox5
@@ -225,7 +226,7 @@
             this.textBox5.Location = new System.Drawing.Point(316, 375);
             this.textBox5.MaxLength = 3;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(304, 41);
+            this.textBox5.Size = new System.Drawing.Size(304, 49);
             this.textBox5.TabIndex = 18;
             // 
             // textBox6
@@ -233,7 +234,7 @@
             this.textBox6.Location = new System.Drawing.Point(316, 429);
             this.textBox6.MaxLength = 100;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(304, 41);
+            this.textBox6.Size = new System.Drawing.Size(304, 49);
             this.textBox6.TabIndex = 19;
             // 
             // textBox7
@@ -264,7 +265,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.SeaGreen;
             this.btnAdd.Location = new System.Drawing.Point(712, 291);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(283, 60);
+            this.btnAdd.Size = new System.Drawing.Size(283, 50);
             this.btnAdd.TabIndex = 22;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -275,9 +276,9 @@
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnEdit.Location = new System.Drawing.Point(714, 410);
+            this.btnEdit.Location = new System.Drawing.Point(712, 421);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(283, 60);
+            this.btnEdit.Size = new System.Drawing.Size(283, 50);
             this.btnEdit.TabIndex = 23;
             this.btnEdit.Text = "Редактировать";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -287,7 +288,7 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.ForeColor = System.Drawing.Color.SeaGreen;
-            this.button4.Location = new System.Drawing.Point(714, 657);
+            this.button4.Location = new System.Drawing.Point(712, 657);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(283, 60);
             this.button4.TabIndex = 24;
@@ -297,11 +298,10 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(714, 110);
+            this.pictureBox2.Location = new System.Drawing.Point(712, 110);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(284, 176);
+            this.pictureBox2.Size = new System.Drawing.Size(286, 176);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 25;
             this.pictureBox2.TabStop = false;
@@ -309,7 +309,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(712, 476);
+            this.pictureBox1.Location = new System.Drawing.Point(715, 476);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(284, 176);
@@ -322,7 +322,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(14, 614);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 33);
+            this.label12.Size = new System.Drawing.Size(148, 42);
             this.label12.TabIndex = 27;
             this.label12.Text = "Артикул:";
             // 
@@ -331,15 +331,29 @@
             this.textBox8.Location = new System.Drawing.Point(316, 611);
             this.textBox8.MaxLength = 6;
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(304, 41);
+            this.textBox8.Size = new System.Drawing.Size(304, 49);
             this.textBox8.TabIndex = 28;
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClear.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnClear.Location = new System.Drawing.Point(712, 354);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(283, 50);
+            this.btnClear.TabIndex = 29;
+            this.btnClear.Text = "Отчистить";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // AddEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.pictureBox1);
@@ -379,7 +393,6 @@
             this.Name = "AddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление/Редактирование";
-            this.Load += new System.EventHandler(this.AddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -418,5 +431,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Button btnClear;
     }
 }

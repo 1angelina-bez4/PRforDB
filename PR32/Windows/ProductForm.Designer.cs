@@ -38,6 +38,7 @@
             this.cbDiscount = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             this.label5.Location = new System.Drawing.Point(310, 8);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 35);
+            this.label5.Size = new System.Drawing.Size(0, 41);
             this.label5.TabIndex = 28;
             // 
             // button1
@@ -61,7 +62,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.SeaGreen;
-            this.button1.Location = new System.Drawing.Point(344, 649);
+            this.button1.Location = new System.Drawing.Point(209, 654);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(303, 60);
             this.button1.TabIndex = 30;
@@ -94,7 +95,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
             this.txtSearch.Location = new System.Drawing.Point(12, 57);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(380, 41);
+            this.txtSearch.Size = new System.Drawing.Size(380, 49);
             this.txtSearch.TabIndex = 32;
             // 
             // cbSort
@@ -105,7 +106,7 @@
             this.cbSort.FormattingEnabled = true;
             this.cbSort.Location = new System.Drawing.Point(398, 57);
             this.cbSort.Name = "cbSort";
-            this.cbSort.Size = new System.Drawing.Size(312, 41);
+            this.cbSort.Size = new System.Drawing.Size(312, 50);
             this.cbSort.TabIndex = 33;
             // 
             // cbDiscount
@@ -116,7 +117,7 @@
             this.cbDiscount.FormattingEnabled = true;
             this.cbDiscount.Location = new System.Drawing.Point(716, 57);
             this.cbDiscount.Name = "cbDiscount";
-            this.cbDiscount.Size = new System.Drawing.Size(278, 41);
+            this.cbDiscount.Size = new System.Drawing.Size(278, 50);
             this.cbDiscount.TabIndex = 34;
             // 
             // lblStatus
@@ -125,7 +126,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(6, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 33);
+            this.lblStatus.Size = new System.Drawing.Size(0, 42);
             this.lblStatus.TabIndex = 35;
             // 
             // linkLabel1
@@ -134,15 +135,31 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(12, 663);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(0, 33);
+            this.linkLabel1.Size = new System.Drawing.Size(0, 42);
             this.linkLabel1.TabIndex = 36;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.SeaGreen;
+            this.button2.Location = new System.Drawing.Point(529, 654);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(303, 60);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Оформить заказ";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cbDiscount);
@@ -174,5 +191,6 @@
         private System.Windows.Forms.ComboBox cbDiscount;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button button2;
     }
 }

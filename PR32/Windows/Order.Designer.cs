@@ -30,7 +30,7 @@ namespace PR32.Windows
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Order));
-            this.lblPickup = new System.Windows.Forms.Label();
+            this.usernamelbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,14 +49,14 @@ namespace PR32.Windows
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblPickup
+            // usernamelbl
             // 
-            this.lblPickup.AutoSize = true;
-            this.lblPickup.Location = new System.Drawing.Point(469, 9);
-            this.lblPickup.Name = "lblPickup";
-            this.lblPickup.Size = new System.Drawing.Size(187, 33);
-            this.lblPickup.TabIndex = 41;
-            this.lblPickup.Text = "Пользователь:";
+            this.usernamelbl.AutoSize = true;
+            this.usernamelbl.Location = new System.Drawing.Point(2, 9);
+            this.usernamelbl.Name = "usernamelbl";
+            this.usernamelbl.Size = new System.Drawing.Size(187, 33);
+            this.usernamelbl.TabIndex = 41;
+            this.usernamelbl.Text = "Пользователь:";
             // 
             // label2
             // 
@@ -224,7 +224,7 @@ namespace PR32.Windows
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblPickup);
+            this.Controls.Add(this.usernamelbl);
             this.Font = new System.Drawing.Font("Comic Sans MS", 18F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(102)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -239,7 +239,7 @@ namespace PR32.Windows
 
         #endregion
 
-        private System.Windows.Forms.Label lblPickup;
+        private System.Windows.Forms.Label usernamelbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;

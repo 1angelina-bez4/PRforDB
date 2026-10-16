@@ -68,7 +68,7 @@ namespace PR32
 
                     MessageBox.Show($"Изображение \"{_photoFileName}\" успешно выбрано и сохранено.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    /pictureBox2.Image = Image.FromFile(targetPath);
+                    pictureBox2.Image = Image.FromFile(targetPath);
                 }
             }
         }

@@ -16,11 +16,13 @@ namespace PR32
         private int currentPage = 1;
         private int totalFilteredRecords = 0;
         private int totalAllRecords = 0;
+        string articleNumber;
         private int? _userId;
         private string _userName;
         private int _roleId; // 1=Админ, 2=Менеджер, 3=Клиент
         private bool _isGuest;
         private Dictionary<string, int> _cart = new Dictionary<string, int>();
+
 
         public ProductForm(int? userId, string userName, int roleId, bool isGuest)
         {
@@ -66,6 +68,10 @@ namespace PR32
             cbDiscount.Items.Add("10-14,99%");
             cbDiscount.Items.Add("15% и более");
             cbDiscount.SelectedIndex = 0;
+
+
+          
+
 
             txtSearch.Text = "Поиск по наименованию...";
             txtSearch.ForeColor = Color.Gray;
@@ -117,6 +123,11 @@ namespace PR32
                              $"uid={Properties.Settings.Default.uid};" +
                              $"pwd={Properties.Settings.Default.pwd};" +
                              $"database=trade;";
+
+
+
+
+            
 
             try
             {
@@ -298,15 +309,6 @@ namespace PR32
                 Width = 90,
                 DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter, Font = new Font("Comic Sans MS", 12F, FontStyle.Bold), ForeColor = Color.SeaGreen }
             });
-
-            dataGridView1.Columns.Add(new DataGridViewButtonColumn
-            {
-                HeaderText = "Действия",
-                Name = "Action",
-                Width = 100,
-                UseColumnTextForButtonValue = true,
-                Text = "Подробнее"
-            });
         }
 
         void Pagination()
@@ -382,10 +384,8 @@ namespace PR32
         {
             if (e.RowIndex < 0) return;
 
-            // Получаем артикул товара из кликнутой строки
-            string articleNumber = dataGridView1.Rows[e.RowIndex].Cells["ProductArticleNumber"].Value.ToString();
+            articleNumber = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-            // Открываем форму добавления/редактирования
             AddEdit addEditForm = new AddEdit(articleNumber);
             addEditForm.ShowDialog();
 
@@ -393,8 +393,9 @@ namespace PR32
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
             this.Hide();
-            new Order().ShowDialog();
+            new Order(articleNumber).ShowDialog();
             this.Show();
         }
 
@@ -409,12 +410,12 @@ namespace PR32
             }
         }
 
-        // Обработчик пункта меню "Добавить к заказу"
         private void добавитьКЗаказуToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             if (dataGridView1.SelectedRows.Count == 0) return;
 
-            string articleNumber = dataGridView1.SelectedRows[0].Cells["ProductArticleNumber"].Value.ToString();
+             articleNumber = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
 
             try
             {

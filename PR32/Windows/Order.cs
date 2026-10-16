@@ -7,14 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace PR32.Windows
 {
     public partial class Order : Form
     {
-        public Order()
+        private string articleNumber;
+        public Order(string articleNumber)
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        void fillDGRV()
+        {
+            ClassConnect connect = new ClassConnect();
+            using (MySqlConnection con = new MySqlConnection(connect.connect))
+            {
+                con.Open();
+
+            }
         }
     }
 }

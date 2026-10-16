@@ -162,7 +162,7 @@ namespace PR32
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide();
-                    new ProductForm().ShowDialog();
+                    new ProductForm(null, "Гость", 3, true).ShowDialog();
                     this.Close();
                 }
             }
@@ -190,7 +190,7 @@ namespace PR32
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ProductForm().ShowDialog();
+            new ProductForm(null, "Гость", 3, true).ShowDialog();
             this.Close();
         }
     
